@@ -23,7 +23,7 @@ export default function Layout(): JSX.Element {
   }, [isLoggedin]); */
 
   return (
-    <Box display="flex" flexDirection="column" sx={{height: "100svh"}} id="layout-container">
+    <Box display="flex" flexDirection="column" sx={{height: "99svh"}} id="layout-container">
       <Header />
       <Box component="main" flex={1}>
         <Outlet />

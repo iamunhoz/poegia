@@ -1,4 +1,4 @@
-import { Box, BoxProps, Button } from "@mui/material";
+import { Box, BoxProps, Button, Paper } from "@mui/material";
 import { useAtom, useAtomValue } from "jotai";
 import { dalleImageQueryAtom, dalleImageURLAtom } from "src/state";
 import { openaiImageQuery } from "src/api";
@@ -16,7 +16,7 @@ export default function ImageFrame(props: BoxProps) {
   };
 
   return (
-    <Box {...props} display="flex" justifyContent="center" alignItems="center">
+    <Box {...props} component={Paper} display="flex" justifyContent="center" alignItems="center">
       {dalleImageURL ? (
         <img src={dalleImageURL} alt={dalleImageURL} />
       ) : (
