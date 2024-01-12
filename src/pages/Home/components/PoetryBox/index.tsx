@@ -1,26 +1,17 @@
-import { Box, Button, Input } from "@mui/material";
+import { Box, BoxProps, Input } from "@mui/material";
 import { useAtom } from "jotai";
-import { openaiImageQuery } from "src/api";
-import { dalleImageQueryAtom, dalleImageURLAtom } from "src/state";
+import { dalleImageQueryAtom } from "src/state";
 
-export default function PoetryBox(){
+export default function PoetryBox(props: BoxProps){
     const [dalleImageQuery, setDalleImageQuery] = useAtom(dalleImageQueryAtom);
-    const [,setDalleImageURL] = useAtom(dalleImageURLAtom);
 
     const handleQueryChange: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
         setDalleImageQuery(String(evt.target.value));
     };
 
-    const handleGerar = async () => {
-        const imageURL = await openaiImageQuery(dalleImageQuery);
-
-        setDalleImageURL(imageURL)
-    }
-
     return (
-        <Box>
+        <Box {...props}>
             <Input value={dalleImageQuery} onChange={handleQueryChange}/>
-            <Button onClick={handleGerar}>Gerar</Button>
         </Box>
     )
 }

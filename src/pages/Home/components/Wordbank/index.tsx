@@ -1,9 +1,5 @@
-import { Box } from "@mui/material";
+import { Box, BoxProps } from "@mui/material";
 
-export default function WordBank(){
-    return (
-        <Box>
-            words words words
-        </Box>
-    )
+export default function WordBank(props: BoxProps){
+    return <Box {...props}>words words words</Box>;
 }

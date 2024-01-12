@@ -1,14 +1,27 @@
-import { Box } from "@mui/material";
-import { useAtomValue } from "jotai";
-import { dalleImageURLAtom } from "src/state";
+import { Box, BoxProps, Button } from "@mui/material";
+import { useAtom, useAtomValue } from "jotai";
+import { dalleImageQueryAtom, dalleImageURLAtom } from "src/state";
+import { openaiImageQuery } from "src/api";
 
-export default function ImageFrame() {
+export default function ImageFrame(props: BoxProps) {
+  const [dalleImageQuery] = useAtom(dalleImageQueryAtom);
+  const [, setDalleImageURL] = useAtom(dalleImageURLAtom);
+
   const dalleImageURL = useAtomValue(dalleImageURLAtom);
 
-  if (!dalleImageURL) {
-    return <div>no image</div>
-  }
-  return <Box>
-    <img src={dalleImageURL} alt={dalleImageURL}/>
-  </Box>;
+  const handleGerar = async () => {
+    const imageURL = await openaiImageQuery(dalleImageQuery);
+
+    setDalleImageURL(imageURL);
+  };
+
+  return (
+    <Box {...props} display="flex" justifyContent="center" alignItems="center">
+      {dalleImageURL ? (
+        <img src={dalleImageURL} alt={dalleImageURL} />
+      ) : (
+        <Button onClick={handleGerar}>Gerar</Button>
+      )}
+    </Box>
+  );
 }
