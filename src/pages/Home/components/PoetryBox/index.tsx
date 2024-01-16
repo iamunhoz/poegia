@@ -5,7 +5,7 @@ import { Stanza, Verse, poesia1 } from "src/state/poetries";
 
 const VerseRender = ({verse}:{verse: Verse}) => {
     return (
-        <Typography variant="body1">
+        <Typography variant="body1" textAlign='center'>
             {verse.map(word => word === 'FILLER' ? <Input /> : <span>{word}{' '}</span>)}
         </Typography>
     );
@@ -27,7 +27,7 @@ export default function PoetryBox(props: BoxProps){
     };
 
     return (
-        <Box {...props} component={Paper}>
+        <Box {...props} component={Paper} display='flex' flexDirection='column' alignItems='center' justifyContent='center'>
             {poesia1.map(stanza => <StanzaRender stanza={stanza} />)}
         </Box>
     )
