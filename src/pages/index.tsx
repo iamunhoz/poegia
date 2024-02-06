@@ -1,13 +1,14 @@
-import { RouteObject } from "react-router-dom";
-import Home from "./Home";
-import Contact from "./Contact";
-import Tests from "./Tests";
+import { RouteObject } from "react-router-dom"
+import Home from "./Home"
+import Contact from "./Contact"
+import Tests from "./Tests"
+import { Dalle } from "./Dalle"
 
 const usePageRoutes = () => {
   const pageRoutes: (RouteObject & {
-    disabled: boolean;
-    label: string;
-    path: string;
+    disabled: boolean
+    label: string
+    path: string
   })[] = [
     {
       path: "/",
@@ -27,9 +28,15 @@ const usePageRoutes = () => {
       disabled: false,
       label: "Tests", //copy.linkContact,
     },
-  ];
+    {
+      path: "/dalle",
+      element: <Dalle />,
+      disabled: false,
+      label: "Dalle", //copy.linkContact,
+    },
+  ]
 
-  return { pageRoutes };
-};
+  return { pageRoutes }
+}
 
-export { usePageRoutes };
+export { usePageRoutes }
