@@ -1,14 +1,23 @@
 type Verse = (string | "FILLER")[]
 type Stanza = Verse[]
-type Poetry = Stanza[]
+type Poetry = {
+  stanzas: Stanza[]
+  fillers: string[]
+}
 
-const poesia1: Poetry = [
+// prettier-ignore
+const poesia1: Poetry = {stanzas: [
   [
     ["A", "poesia", "é", "nativa"],
     ["A", "poesia", "é", "FILLER"],
   ],
-  [["É", "um", "fogo", "sem", "controle"], ["FILLER"]],
-]
+  [
+    ["É", "um", "fogo", "sem", "controle"],
+    ["FILLER"]
+],
+],
+  fillers: ['sativa', 'só bole']
+}
 
 export { poesia1 }
 
