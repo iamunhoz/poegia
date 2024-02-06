@@ -1,8 +1,10 @@
 import { Box, BoxProps, Paper, Typography } from "@mui/material"
 // import { useAtom } from "jotai"
 // import { dalleImageQueryAtom } from "src/state"
-import { Stanza, Verse, poesia1 } from "src/state/poetries"
+import { Stanza, Verse } from "src/state/poetries"
 import { WordDropTarget } from "../WordDropTarget"
+import { useAtomValue } from "jotai"
+import { selectedPoetryAtom } from "src/state"
 
 const VerseRender = ({ verse }: { verse: Verse }) => {
   return (
@@ -34,6 +36,7 @@ const StanzaRender = ({ stanza }: { stanza: Stanza }) => {
 }
 
 export default function PoetryBox(props: BoxProps) {
+  const selectedPoetry = useAtomValue(selectedPoetryAtom)
   /*  const [dalleImageQuery, setDalleImageQuery] = useAtom(dalleImageQueryAtom)
 
   const handleQueryChange: React.ChangeEventHandler<HTMLInputElement> = (
@@ -41,6 +44,8 @@ export default function PoetryBox(props: BoxProps) {
   ) => {
     setDalleImageQuery(String(evt.target.value))
   } */
+
+  if (!selectedPoetry) return <></>
 
   return (
     <Box
@@ -51,7 +56,7 @@ export default function PoetryBox(props: BoxProps) {
       alignItems="center"
       justifyContent="center"
     >
-      {poesia1.stanzas.map((stanza) => (
+      {selectedPoetry.stanzas.map((stanza) => (
         <StanzaRender stanza={stanza} />
       ))}
     </Box>

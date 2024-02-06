@@ -1,11 +1,16 @@
 import { Box, BoxProps, Paper } from "@mui/material"
-import { poesia1 } from "src/state/poetries"
 import { WordDropOrigin } from "../WordDropOrigin"
+import { useAtomValue } from "jotai"
+import { selectedPoetryAtom } from "src/state"
 
 export default function WordBank(props: BoxProps) {
+  const selectedPoetry = useAtomValue(selectedPoetryAtom)
+
+  if (!selectedPoetry) return <></>
+
   return (
     <Box {...props} component={Paper} display="flex" alignItems="start" gap={1}>
-      {poesia1.fillers.map((filler) => (
+      {selectedPoetry.fillers.map((filler) => (
         <WordDropOrigin filler={filler} />
       ))}
     </Box>
