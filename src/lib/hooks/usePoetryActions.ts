@@ -5,7 +5,7 @@ import { IselectedPhrases, Poetry } from "../definitions"
 const stringfyPoetry = (poetry: Poetry, answers: IselectedPhrases) => {
   let stringfiedPoetry = ""
 
-  poetry.stanzas.forEach((stanza) => {
+  poetry.body.forEach((stanza) => {
     stanza.forEach((verse) => {
       verse.forEach((word) => {
         if (typeof word === "string") {
