@@ -5,7 +5,7 @@ function isLocalHost(): boolean {
     return (
       window.location.hostname === "localhost" ||
       window.location.hostname === "127.0.0.1"
-    );
+    )
   }
 
   // If not in a browser environment, you may need to implement a different check based on your environment
@@ -13,9 +13,16 @@ function isLocalHost(): boolean {
   // Modify this part according to your specific use case
 
   // Default to false if the environment is unknown or doesn't match localhost
-  return false;
+  return false
 }
 
-export {
-    isLocalHost
+function isMobile(): boolean {
+  // Regular expression to match common mobile device strings
+  const mobileRegex =
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
+
+  // Check if the userAgent matches the mobileRegex
+  return mobileRegex.test(navigator.userAgent)
 }
+
+export { isLocalHost, isMobile }
