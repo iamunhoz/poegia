@@ -1,19 +1,21 @@
 import { Box } from "@mui/material"
 import { useState } from "react"
 import { useDrop } from "react-dnd"
-import { EDragTypes } from "src/state/poetries"
+import { EDragTypes, usePoetryActions } from "src/state/poetries"
 
 type TItem = {
   filler: string | number
 }
 
-export function WordDropTarget(): JSX.Element {
+export function WordDropTarget({ idx }: { idx: number }): JSX.Element {
+  const { selectPhrase } = usePoetryActions()
   const [wordLabel, setWordLabel] = useState("")
   const [, /* { isOver } */ dropRef] = useDrop(() => ({
     accept: EDragTypes.word,
     // o arg 'item' é um payload gerado no hook useDrag do cpte arrastável
     drop: (item: TItem) => {
       setWordLabel(String(item.filler))
+      selectPhrase(idx, String(item.filler))
     },
   }))
 

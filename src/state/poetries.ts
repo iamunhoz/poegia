@@ -1,7 +1,7 @@
 import { useAtom } from "jotai"
-import { selectedPoetryAtom } from "."
+import { selectedPhrasesAtom, selectedPoetryAtom } from "."
 
-type Verse = (string | "FILLER")[]
+type Verse = (string | number)[]
 type Stanza = Verse[]
 type Poetry = {
   id: string | number
@@ -17,11 +17,11 @@ const poesia1: Poetry = {
   stanzas: [
     [
       ["A", "poesia", "é", "nativa"],
-      ["A", "poesia", "é", "FILLER"],
+      ["A", "poesia", "é", 0],
     ],
     [
       ["É", "um", "fogo", "sem", "controle"],
-      ["FILLER"]
+      [1]
     ],
   ],
   fillers: ['sativa', 'só bole']
@@ -33,12 +33,12 @@ const poesia2: Poetry = {
   title: "Os cavalos",
   stanzas: [
     [
-      ["Um", "cavalo", "era", "FILLER"],
-      ["Mas", "FILLER", "é", "azul"],
+      ["Um", "cavalo", "era", 0],
+      ["Mas", 1, "é", "azul"],
     ],
     [
-      ["Qualquer", "FILLER", "que", "FILLER", ", paciência"],
-      ["FILLER", 'vive', 'mais']
+      ["Qualquer", 2, "que", 3, ", paciência"],
+      [4, 'vive', 'mais']
     ],
   ],
   fillers: ['luxo', 'salão de baile', 'pássaro', 'desidratar', 'jacaré']
@@ -56,17 +56,42 @@ export enum EDragTypes {
 
 export function usePoetryActions() {
   const [selectedPoetry, setSelectedPoetry] = useAtom(selectedPoetryAtom)
+  const [selectedPhrases, setSelectedPhrases] = useAtom(selectedPhrasesAtom)
 
   const addNewPoetry = (poetry: Poetry) => {
     setSelectedPoetry(poetry)
   }
 
+  const selectPhrase = (idx: number, phrase: string) => {
+    setSelectedPhrases((prev) => ({
+      ...prev,
+      [idx]: phrase,
+    }))
+  }
+
   const stringfySelectedPoetry = () => {
-    return JSON.stringify(selectedPoetry)
+    let stringfiedPoetry = ""
+
+    selectedPoetry?.stanzas.forEach((stanza) => {
+      stanza.forEach((verse) => {
+        verse.forEach((word) => {
+          if (typeof word === "string") {
+            stringfiedPoetry += word
+          } else {
+            stringfiedPoetry += selectedPhrases[String(word)]
+          }
+          stringfiedPoetry += " "
+        })
+        stringfiedPoetry += "\n "
+      })
+    })
+
+    return stringfiedPoetry
   }
 
   return {
     addNewPoetry,
     stringfySelectedPoetry,
+    selectPhrase,
   }
 }

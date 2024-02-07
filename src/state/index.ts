@@ -15,6 +15,11 @@ const siteLanguageAtom = atom<"pt" | "en">("en")
 
 const selectedPoetryAtom = atom<Poetry | null>(null)
 
+interface IselectedPhrasesAtom {
+  [key: string]: string
+}
+const selectedPhrasesAtom = atom<IselectedPhrasesAtom>({})
+
 const dalleImageQueryAtom = atom<string>("")
 const dalleImageURLAtom = atom<string | null>(null)
 
@@ -29,4 +34,5 @@ export {
   dalleImageURLAtom,
   isLoggedinAtom,
   selectedPoetryAtom,
+  selectedPhrasesAtom,
 }

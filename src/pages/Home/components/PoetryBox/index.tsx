@@ -19,7 +19,11 @@ const VerseRender = ({ verse }: { verse: Verse }) => {
       }}
     >
       {verse.map((word) =>
-        word === "FILLER" ? <WordDropTarget /> : <span>{word} </span>
+        typeof word === "number" ? (
+          <WordDropTarget idx={word} />
+        ) : (
+          <span>{word} </span>
+        )
       )}
     </Typography>
   )
