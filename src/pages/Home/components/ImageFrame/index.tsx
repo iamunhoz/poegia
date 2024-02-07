@@ -1,9 +1,9 @@
 import { Box, BoxProps, Button, CircularProgress, Paper } from "@mui/material"
 import { useAtom } from "jotai"
 import { dalleImageURLAtom } from "src/state"
-import { openaiImageQuery } from "src/api"
 import { useState } from "react"
-import { usePoetryActions } from "src/state/poetries"
+import { openaiImageQuery } from "src/lib/api/openAI"
+import { usePoetryActions } from "src/lib/hooks/usePoetryActions"
 
 export default function ImageFrame(props: BoxProps) {
   const { generateDalleQuery } = usePoetryActions()

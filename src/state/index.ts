@@ -1,11 +1,6 @@
 import { atom } from "jotai"
 import { atomWithStorage } from "jotai/utils"
-import { Poetry } from "./poetries"
-
-const enum ETheme {
-  dark = "dark",
-  light = "light",
-}
+import { ETheme, IselectedPhrases, Poetry } from "src/lib/definitions"
 
 const themeAtom = atom<ETheme>(ETheme.dark)
 
@@ -15,9 +10,6 @@ const siteLanguageAtom = atom<"pt" | "en">("en")
 
 const selectedPoetryAtom = atom<Poetry | null>(null)
 
-export interface IselectedPhrases {
-  [key: string]: string
-}
 const selectedPhrasesAtom = atom<IselectedPhrases>({})
 
 const dalleImageQueryAtom = atom<string>("")

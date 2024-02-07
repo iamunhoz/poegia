@@ -1,6 +1,6 @@
 import { Box } from "@mui/material"
 import { useDrag } from "react-dnd"
-import { EDragTypes } from "src/state/poetries"
+import { EDragTypes } from "src/lib/definitions"
 
 type WordDropOriginProps = {
   filler: string

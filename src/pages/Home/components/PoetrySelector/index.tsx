@@ -1,7 +1,9 @@
 import { Box, Button } from "@mui/material"
 import { useAtomValue } from "jotai"
+import { Poetry } from "src/lib/definitions"
+import { usePoetryActions } from "src/lib/hooks/usePoetryActions"
 import { selectedPoetryAtom } from "src/state"
-import { Poetry, poetries, usePoetryActions } from "src/state/poetries"
+import { poetries } from "src/state/poetries"
 
 function PoetryCardSelector({ poetry }: { poetry: Poetry }) {
   const { addNewPoetry } = usePoetryActions()

@@ -1,7 +1,8 @@
 import { Box } from "@mui/material"
 import { useState } from "react"
 import { useDrop } from "react-dnd"
-import { EDragTypes, usePoetryActions } from "src/state/poetries"
+import { EDragTypes } from "src/lib/definitions"
+import { usePoetryActions } from "src/lib/hooks/usePoetryActions"
 
 type TItem = {
   filler: string | number
