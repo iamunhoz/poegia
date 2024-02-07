@@ -1,19 +1,24 @@
 import { Box, BoxProps, Button, CircularProgress, Paper } from "@mui/material"
-import { useAtom, useAtomValue } from "jotai"
-import { dalleImageQueryAtom, dalleImageURLAtom } from "src/state"
+import { useAtom } from "jotai"
+import { dalleImageURLAtom } from "src/state"
 import { openaiImageQuery } from "src/api"
 import { useState } from "react"
+import { usePoetryActions } from "src/state/poetries"
+
+const dalleQueryText = (stringfiedPoetry: string) => {
+  return `The following text in single quotes is a poetry: '${stringfiedPoetry}'. Please, draw an image that reflects the idea of the poetry. The picture must be suited for children. In the picture, use only the words of the poetry in this request, no other words.`
+}
 
 export default function ImageFrame(props: BoxProps) {
-  const [dalleImageQuery] = useAtom(dalleImageQueryAtom)
+  const { stringfySelectedPoetry } = usePoetryActions()
   const [isLoading, setIsLoading] = useState(false)
-  const [, setDalleImageURL] = useAtom(dalleImageURLAtom)
-
-  const dalleImageURL = useAtomValue(dalleImageURLAtom)
+  const [dalleImageURL, setDalleImageURL] = useAtom(dalleImageURLAtom)
 
   const handleGerar = async () => {
     setIsLoading(true)
-    const imageURL = await openaiImageQuery(dalleImageQuery)
+    const imageURL = await openaiImageQuery(
+      dalleQueryText(stringfySelectedPoetry())
+    )
     setIsLoading(false)
 
     setDalleImageURL(imageURL)
