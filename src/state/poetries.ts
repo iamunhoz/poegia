@@ -1,5 +1,5 @@
 import { useAtom } from "jotai"
-import { selectedPhrasesAtom, selectedPoetryAtom } from "."
+import { IselectedPhrases, selectedPhrasesAtom, selectedPoetryAtom } from "."
 
 type Verse = (string | number)[]
 type Stanza = Verse[]
@@ -54,6 +54,30 @@ export enum EDragTypes {
   word = "word",
 }
 
+const stringfyPoetry = (poetry: Poetry, answers: IselectedPhrases) => {
+  let stringfiedPoetry = ""
+
+  poetry.stanzas.forEach((stanza) => {
+    stanza.forEach((verse) => {
+      verse.forEach((word) => {
+        if (typeof word === "string") {
+          stringfiedPoetry += word
+        } else {
+          stringfiedPoetry += answers[String(word)]
+        }
+        stringfiedPoetry += " "
+      })
+      stringfiedPoetry += "\n "
+    })
+  })
+
+  return stringfiedPoetry
+}
+
+const dalleQueryText = (stringfiedPoetry: string) => {
+  return `The following text in single quotes is a poetry: '${stringfiedPoetry}'. Please, draw an image that reflects the idea of the poetry. The picture must be suited for children. In the picture, use only the words of the poetry in this request, no other words.`
+}
+
 export function usePoetryActions() {
   const [selectedPoetry, setSelectedPoetry] = useAtom(selectedPoetryAtom)
   const [selectedPhrases, setSelectedPhrases] = useAtom(selectedPhrasesAtom)
@@ -69,29 +93,14 @@ export function usePoetryActions() {
     }))
   }
 
-  const stringfySelectedPoetry = () => {
-    let stringfiedPoetry = ""
-
-    selectedPoetry?.stanzas.forEach((stanza) => {
-      stanza.forEach((verse) => {
-        verse.forEach((word) => {
-          if (typeof word === "string") {
-            stringfiedPoetry += word
-          } else {
-            stringfiedPoetry += selectedPhrases[String(word)]
-          }
-          stringfiedPoetry += " "
-        })
-        stringfiedPoetry += "\n "
-      })
-    })
-
-    return stringfiedPoetry
+  const generateDalleQuery = () => {
+    if (!selectedPoetry) return ""
+    return dalleQueryText(stringfyPoetry(selectedPoetry, selectedPhrases))
   }
 
   return {
     addNewPoetry,
-    stringfySelectedPoetry,
+    generateDalleQuery,
     selectPhrase,
   }
 }

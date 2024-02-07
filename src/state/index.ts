@@ -15,10 +15,10 @@ const siteLanguageAtom = atom<"pt" | "en">("en")
 
 const selectedPoetryAtom = atom<Poetry | null>(null)
 
-interface IselectedPhrasesAtom {
+export interface IselectedPhrases {
   [key: string]: string
 }
-const selectedPhrasesAtom = atom<IselectedPhrasesAtom>({})
+const selectedPhrasesAtom = atom<IselectedPhrases>({})
 
 const dalleImageQueryAtom = atom<string>("")
 const dalleImageURLAtom = atom<string | null>(null)
