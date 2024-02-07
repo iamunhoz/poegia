@@ -73,6 +73,8 @@ export function CreatePoetry(): JSX.Element {
       }}
       display="flex"
     >
+      {" "}
+      <TextField label="Titulo" />
       <TextField
         id="outlined-multiline-flexible"
         // label="Multiline"
