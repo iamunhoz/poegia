@@ -1,6 +1,7 @@
 import { Box, Button, TextField } from "@mui/material"
 import { useMutation } from "@tanstack/react-query"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { post } from "src/lib/api/poegia-backend"
 import { ApiPaths, Poetry } from "src/lib/definitions"
 
@@ -27,6 +28,7 @@ const parseStringifiedPoetry = (str: string) => {
 }
 
 export function CreatePoetry(): JSX.Element {
+  const navigate = useNavigate()
   const [poetryRaw, setPoetryRaw] = useState(`
   No meio do caminho tinha uma FILLER
   tinha uma FILLER no meio do caminho
@@ -40,13 +42,29 @@ export function CreatePoetry(): JSX.Element {
   tinha uma pedra no meio do caminho
   no meio do caminho tinha uma FILLER.
   `)
-
+  const [poetryTitle, setPoetryTitle] = useState("")
+  const [poetryFillers, setPoetryFillers] = useState("")
   const { mutate, isPending } = useMutation({
     mutationKey: [ApiPaths.poetries],
     mutationFn: async (poetry: Poetry) => {
       await post(ApiPaths.poetries, poetry)
     },
+    onSuccess: () => {
+      navigate("/")
+    },
   })
+
+  const handlePoetryTitleChange: React.ChangeEventHandler<
+    HTMLTextAreaElement
+  > = (evt) => {
+    setPoetryTitle(evt.target.value)
+  }
+
+  const handlePoetryFillersChange: React.ChangeEventHandler<
+    HTMLTextAreaElement
+  > = (evt) => {
+    setPoetryFillers(evt.target.value)
+  }
 
   const handlePoetryChange: React.ChangeEventHandler<HTMLTextAreaElement> = (
     evt
@@ -59,9 +77,9 @@ export function CreatePoetry(): JSX.Element {
 
     mutate({
       body,
-      fillers: ["morango", "abacaxi", "cereja", "manga", "goiaba", "pitanga"],
-      title: "poesia salada mista",
-      id: "xxxxxx",
+      fillers: poetryFillers.split(" "),
+      title: poetryTitle,
+      id: poetryTitle.split(" ").join("-"),
     })
   }
 
@@ -73,24 +91,40 @@ export function CreatePoetry(): JSX.Element {
       }}
       display="flex"
     >
-      {" "}
-      <TextField label="Titulo" />
-      <TextField
-        id="outlined-multiline-flexible"
-        // label="Multiline"
-        multiline
-        minRows={20}
-        sx={{
-          width: "50%",
-          "& *": {
-            fontSize: "40px !important",
-          },
-        }}
-        value={poetryRaw}
-        onChange={handlePoetryChange}
-      />
-      <Box>
-        <Button onClick={handleEnviar}>Enviar Poesia</Button>
+      <Box display="flex" flexDirection="column" flex={2}>
+        <TextField
+          label="Titulo"
+          value={poetryTitle}
+          onChange={handlePoetryTitleChange}
+        />
+        <TextField
+          id="outlined-multiline-flexible"
+          // label="Multiline"
+          multiline
+          minRows={20}
+          sx={{
+            "& *": {
+              fontSize: "24px !important",
+            },
+          }}
+          value={poetryRaw}
+          onChange={handlePoetryChange}
+        />
+        <TextField
+          label="Fillers"
+          value={poetryFillers}
+          onChange={handlePoetryFillersChange}
+        />
+      </Box>
+      <Box flex={1}>
+        <Button
+          onClick={handleEnviar}
+          variant="contained"
+          size="large"
+          sx={{ fontSize: 24, ml: 2 }}
+        >
+          Enviar Poesia
+        </Button>
         {isPending && <div>AGUARDE...</div>}
       </Box>
     </Box>
