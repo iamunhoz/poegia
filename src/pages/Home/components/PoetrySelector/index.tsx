@@ -1,9 +1,10 @@
 import { Box, Button } from "@mui/material"
+import { useQuery } from "@tanstack/react-query"
 import { useAtomValue } from "jotai"
-import { Poetry } from "src/lib/definitions"
+import { get } from "src/lib/api/poegia-backend"
+import { Poetry, ApiPaths } from "src/lib/definitions"
 import { usePoetryActions } from "src/lib/hooks/usePoetryActions"
 import { selectedPoetryAtom } from "src/state"
-import { poetries } from "src/state/poetries"
 
 function PoetryCardSelector({ poetry }: { poetry: Poetry }) {
   const { addNewPoetry } = usePoetryActions()
@@ -24,8 +25,17 @@ function PoetryCardSelector({ poetry }: { poetry: Poetry }) {
 
 export function PoetrySelector(): JSX.Element {
   const selectedPoetry = useAtomValue(selectedPoetryAtom)
+  const { data, isLoading, isError } = useQuery({
+    queryKey: [ApiPaths.poetries],
+    queryFn: async () => {
+      return await get<Poetry[]>(ApiPaths.poetries)
+    },
+  })
 
   if (selectedPoetry) return <></>
+  if (isLoading) return <>loading</>
+  if (isError) return <>errors</>
+
   return (
     <Box
       display="flex"
@@ -33,9 +43,10 @@ export function PoetrySelector(): JSX.Element {
       alignItems="center"
       border="2px solid green"
     >
-      {poetries.map((poetry) => (
-        <PoetryCardSelector poetry={poetry} key={poetry.id} />
-      ))}
+      {data &&
+        data.map((poetry) => (
+          <PoetryCardSelector poetry={poetry} key={poetry.id} />
+        ))}
     </Box>
   )
 }

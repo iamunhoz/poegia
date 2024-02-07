@@ -1,10 +1,11 @@
 import { Box, BoxProps, Paper, Typography } from "@mui/material"
 // import { useAtom } from "jotai"
 // import { dalleImageQueryAtom } from "src/state"
-import { Stanza, Verse } from "src/state/poetries"
 import { WordDropTarget } from "../WordDropTarget"
 import { useAtomValue } from "jotai"
 import { selectedPoetryAtom } from "src/state"
+import { Stanza, Verse } from "src/lib/definitions"
+import { isNumber } from "src/lib/string"
 
 const VerseRender = ({ verse }: { verse: Verse }) => {
   return (
@@ -19,10 +20,10 @@ const VerseRender = ({ verse }: { verse: Verse }) => {
       }}
     >
       {verse.map((word) =>
-        typeof word === "number" ? (
-          <WordDropTarget idx={word} />
+        isNumber(word) ? (
+          <WordDropTarget idx={word as number} key={word} />
         ) : (
-          <span>{word} </span>
+          <span key={word}>{word} </span>
         )
       )}
     </Typography>
@@ -33,7 +34,7 @@ const StanzaRender = ({ stanza }: { stanza: Stanza }) => {
   return (
     <Box>
       {stanza.map((verse) => (
-        <VerseRender verse={verse} />
+        <VerseRender verse={verse} key={JSON.stringify(verse)} />
       ))}
     </Box>
   )
@@ -60,8 +61,8 @@ export default function PoetryBox(props: BoxProps) {
       alignItems="center"
       justifyContent="center"
     >
-      {selectedPoetry.stanzas.map((stanza) => (
-        <StanzaRender stanza={stanza} />
+      {selectedPoetry.body.map((stanza, idx) => (
+        <StanzaRender stanza={stanza} key={idx} />
       ))}
     </Box>
   )

@@ -2,6 +2,9 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import Layout from "./components/layout"
 import { usePageRoutes } from "./pages"
 import Login from "./pages/Login"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+
+const queryClient = new QueryClient()
 
 function App() {
   const { pageRoutes } = usePageRoutes()
@@ -18,7 +21,11 @@ function App() {
       errorElement: <main>Error</main>,
     },
   ])
-  return <RouterProvider router={router} />
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  )
 }
 
 export default App

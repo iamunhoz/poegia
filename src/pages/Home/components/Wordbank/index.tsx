@@ -11,7 +11,7 @@ export default function WordBank(props: BoxProps) {
   return (
     <Box {...props} component={Paper} display="flex" alignItems="start" gap={1}>
       {selectedPoetry.fillers.map((filler) => (
-        <WordDropOrigin filler={filler} />
+        <WordDropOrigin filler={filler} key={filler} />
       ))}
     </Box>
   )

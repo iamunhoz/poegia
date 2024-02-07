@@ -12,10 +12,14 @@ export type Stanza = Verse[]
 export type Poetry = {
   id: string | number
   title: string
-  stanzas: Stanza[]
+  body: Stanza[]
   fillers: string[]
 }
 
 export enum EDragTypes {
   word = "word",
+}
+
+export enum ApiPaths {
+  poetries = "poetries",
 }
