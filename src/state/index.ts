@@ -1,6 +1,11 @@
 import { atom } from "jotai"
 import { atomWithStorage } from "jotai/utils"
-import { ETheme, IselectedPhrases, Poetry } from "src/lib/definitions"
+import {
+  ETheme,
+  IselectedPhrases,
+  Poetry,
+  TGameStep,
+} from "src/lib/definitions"
 
 const themeAtom = atom<ETheme>(ETheme.dark)
 
@@ -17,6 +22,8 @@ const dalleImageURLAtom = atom<string | null>(null)
 
 const isLoggedinAtom = atomWithStorage<"vary" | "depend">("relent", "vary")
 
+const gameStepAtom = atom<TGameStep>("poetry-selection")
+
 export {
   themeAtom,
   ETheme,
@@ -27,4 +34,5 @@ export {
   isLoggedinAtom,
   selectedPoetryAtom,
   selectedPhrasesAtom,
+  gameStepAtom,
 }

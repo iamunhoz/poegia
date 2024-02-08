@@ -1,5 +1,9 @@
 import { useAtom } from "jotai"
-import { selectedPhrasesAtom, selectedPoetryAtom } from "src/state"
+import {
+  gameStepAtom,
+  selectedPhrasesAtom,
+  selectedPoetryAtom,
+} from "src/state"
 import { IselectedPhrases, Poetry } from "../definitions"
 
 const stringfyPoetry = (poetry: Poetry, answers: IselectedPhrases) => {
@@ -29,9 +33,11 @@ const dalleQueryText = (stringfiedPoetry: string) => {
 export function usePoetryActions() {
   const [selectedPoetry, setSelectedPoetry] = useAtom(selectedPoetryAtom)
   const [selectedPhrases, setSelectedPhrases] = useAtom(selectedPhrasesAtom)
+  const [, setGameStep] = useAtom(gameStepAtom)
 
   const addNewPoetry = (poetry: Poetry) => {
     setSelectedPoetry(poetry)
+    setGameStep("poetry-making")
   }
 
   const selectPhrase = (idx: number, phrase: string) => {

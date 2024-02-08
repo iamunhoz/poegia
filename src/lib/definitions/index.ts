@@ -23,3 +23,8 @@ export enum EDragTypes {
 export enum ApiPaths {
   poetries = "poetries",
 }
+
+export type TGameStep =
+  | "poetry-selection"
+  | "poetry-making"
+  | "poetry-image-result"
