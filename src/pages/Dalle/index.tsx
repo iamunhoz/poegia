@@ -28,17 +28,30 @@ function ImageFrame(props: BoxProps) {
 
   return (
     <Box
-      {...props}
-      component={Paper}
+      // sx={{ border: "5px solid orange" }}
       display="flex"
       justifyContent="center"
       alignItems="center"
     >
-      {dalleImageURL && <img src={dalleImageURL} alt={dalleImageURL} />} (
-      <Button onClick={handleGerar} disabled={isLoading}>
+      <Box
+        {...props}
+        component={Paper}
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        {dalleImageURL && <img src={dalleImageURL} alt={dalleImageURL} />}
+      </Box>
+      <Button
+        onClick={handleGerar}
+        variant="contained"
+        disabled={isLoading}
+        sx={{
+          fontSize: 50,
+        }}
+      >
         {isLoading ? <CircularProgress /> : "Gerar"}
       </Button>
-      )
     </Box>
   )
 }
@@ -55,17 +68,22 @@ export function Dalle(): JSX.Element {
     <Box
       sx={{
         height: "80svh",
+        backgroundColor: "rgba(0,0,0,0.5)",
+        margin: "100px 20px 10px",
+        p: 1,
         // border: "2px solid orange",
       }}
     >
-      <Input
-        value={dalleImageQuery}
-        onChange={handleQueryChange}
-        sx={{
-          width: "80svw",
-          marginLeft: 20,
-        }}
-      />
+      <Paper sx={{ padding: 4, m: 4 }}>
+        <Input
+          value={dalleImageQuery}
+          onChange={handleQueryChange}
+          sx={{
+            width: "80svw",
+            marginLeft: 20,
+          }}
+        />
+      </Paper>
       <ImageFrame />
     </Box>
   )

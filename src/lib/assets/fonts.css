@@ -3,3 +3,27 @@
   src: url("./ThaleahFat.ttf") format("truetype");
   /* You can define other font properties here if needed, such as font-weight and font-style */
 }
+
+@font-face {
+  font-family: "hey-gorgeous";
+  src: url("./heygorgeous.ttf") format("truetype");
+  /* You can define other font properties here if needed, such as font-weight and font-style */
+}
+
+@font-face {
+  font-family: "paper-mario";
+  src: url("./PaperMarioFont.ttf") format("truetype");
+  /* You can define other font properties here if needed, such as font-weight and font-style */
+}
+
+@font-face {
+  font-family: "pop-happiness";
+  src: url("./PopHappiness.ttf") format("truetype");
+  /* You can define other font properties here if needed, such as font-weight and font-style */
+}
+
+@font-face {
+  font-family: "super-mario-script";
+  src: url("./SuperMarioScript2Demo-Regular.ttf") format("truetype");
+  /* You can define other font properties here if needed, such as font-weight and font-style */
+}

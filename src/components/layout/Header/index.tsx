@@ -21,6 +21,7 @@ export default function Header(): JSX.Element {
           color: "white",
           textShadow:
             "-5px 0 rgba(0,0,0,1), 0 5px rgba(0,0,0,1), 5px 0 rgba(0,0,0,1), 0 -5px rgba(0,0,0,1)",
+          fontFamily: "paper-mario",
         }}
       >
         Poegia
