@@ -15,7 +15,7 @@ const GameStage = () => {
     case "poetry-image-result":
       return <ImageFrame />
     default:
-      return null // Handle the default case if needed
+      return null
   }
 }
 

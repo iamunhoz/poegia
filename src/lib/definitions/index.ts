@@ -28,3 +28,11 @@ export type TGameStep =
   | "poetry-selection"
   | "poetry-making"
   | "poetry-image-result"
+
+export enum AppColors {
+  red = "#ff595e",
+  yellow = "#ffca3a",
+  green = "#8ac926",
+  blue = "#1982c4",
+  purple = "#6a4c93",
+}

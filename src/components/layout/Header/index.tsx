@@ -8,12 +8,7 @@ export default function Header(): JSX.Element {
   // const [theme] = useAtom(themeAtom);
 
   return (
-    <Box
-      component="header"
-      display="flex"
-      justifyContent="center"
-      height={50} /* theme={theme} */
-    >
+    <Box component="header" display="flex" justifyContent="center">
       <Typography
         variant="h1"
         fontSize={96}

@@ -1,6 +1,4 @@
-import { Box, BoxProps, Paper, Typography } from "@mui/material"
-// import { useAtom } from "jotai"
-// import { dalleImageQueryAtom } from "src/state"
+import { Box, BoxProps, Typography } from "@mui/material"
 import { WordDropTarget } from "../WordDropTarget"
 import { useAtomValue } from "jotai"
 import { selectedPoetryAtom } from "src/state"
@@ -16,6 +14,9 @@ const VerseRender = ({ verse }: { verse: Verse }) => {
         "& > span": {
           fontSize: "32px",
           padding: 1,
+          fontFamily: "super-mario-script",
+          color: "white",
+          lineHeight: "54px",
         },
       }}
     >
@@ -42,20 +43,11 @@ const StanzaRender = ({ stanza }: { stanza: Stanza }) => {
 
 export default function PoetryBox(props: BoxProps) {
   const selectedPoetry = useAtomValue(selectedPoetryAtom)
-  /*  const [dalleImageQuery, setDalleImageQuery] = useAtom(dalleImageQueryAtom)
-
-  const handleQueryChange: React.ChangeEventHandler<HTMLInputElement> = (
-    evt
-  ) => {
-    setDalleImageQuery(String(evt.target.value))
-  } */
-
   if (!selectedPoetry) return <></>
 
   return (
     <Box
       {...props}
-      component={Paper}
       display="flex"
       flexDirection="column"
       alignItems="center"
