@@ -4,6 +4,7 @@ import { PoetrySelector } from "./components/PoetrySelector"
 import { PoetryMaker } from "./components/PoetryMaker"
 import { useAtomValue } from "jotai"
 import { gameStepAtom } from "src/state"
+import GameStartScreen from "./components/GameStartScreen"
 
 const GameStage = () => {
   const gameStep = useAtomValue(gameStepAtom)
@@ -15,7 +16,7 @@ const GameStage = () => {
     case "poetry-image-result":
       return <ImageFrame />
     default:
-      return null
+      return <GameStartScreen />
   }
 }
 

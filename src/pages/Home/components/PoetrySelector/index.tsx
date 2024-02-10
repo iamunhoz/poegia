@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material"
+import { Box, Button, CircularProgress, Typography } from "@mui/material"
 import { useQuery } from "@tanstack/react-query"
 import { useAtomValue } from "jotai"
 import { GreenBoard } from "src/components/GreenBoard"
@@ -34,7 +34,6 @@ function PoetrySelectorTitle() {
       fontFamily="paper-mario"
       sx={{
         textShadow: "0 5px rgba(0,0,0,0.7), 5px 0 rgba(0,0,0,0.7)",
-        // letterSpacing: "10px",
         fontSize: "96px",
       }}
     >
@@ -43,7 +42,6 @@ function PoetrySelectorTitle() {
           key={char}
           style={{
             color: getRandomColor(),
-            // boxShadow: "0px 20px 3px -14px rgba(0,0,0,0.5 )",
             borderRadius: "10px",
             display: "inline",
             textAlign: "center",
@@ -83,7 +81,7 @@ function PoetryCardSelector({ poetry }: { poetry: Poetry }) {
   )
 }
 
-export function PoetrySelector(): JSX.Element {
+function AsyncPoetryCards() {
   const selectedPoetry = useAtomValue(selectedPoetryAtom)
   const { data, isLoading, isError } = useQuery({
     queryKey: [ApiPaths.poetries],
@@ -93,9 +91,26 @@ export function PoetrySelector(): JSX.Element {
   })
 
   if (selectedPoetry) return <></>
-  if (isLoading) return <>loading</>
+  if (isLoading) return <CircularProgress />
   if (isError) return <>errors</>
 
+  return (
+    <Box
+      display="grid"
+      gridTemplateColumns="repeat(auto-fill, minmax(400px, 1fr))"
+      justifyContent="center"
+      alignItems="start"
+      mt={6}
+    >
+      {data &&
+        data.map((poetry) => (
+          <PoetryCardSelector poetry={poetry} key={poetry.id} />
+        ))}
+    </Box>
+  )
+}
+
+export function PoetrySelector(): JSX.Element {
   return (
     <GreenBoard
       sx={{
@@ -106,18 +121,7 @@ export function PoetrySelector(): JSX.Element {
       alignItems="center"
     >
       <PoetrySelectorTitle />
-      <Box
-        display="grid"
-        gridTemplateColumns="repeat(auto-fill, minmax(400px, 1fr))"
-        justifyContent="center"
-        alignItems="start"
-        mt={6}
-      >
-        {data &&
-          data.map((poetry) => (
-            <PoetryCardSelector poetry={poetry} key={poetry.id} />
-          ))}
-      </Box>
+      <AsyncPoetryCards />
     </GreenBoard>
   )
 }

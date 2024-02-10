@@ -22,7 +22,7 @@ const dalleImageURLAtom = atom<string | null>(null)
 
 const isLoggedinAtom = atomWithStorage<"vary" | "depend">("relent", "vary")
 
-const gameStepAtom = atom<TGameStep>("poetry-selection")
+const gameStepAtom = atom<TGameStep>("game-start")
 
 export {
   themeAtom,

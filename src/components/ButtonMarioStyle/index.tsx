@@ -8,7 +8,7 @@ interface IMarioButtonProps extends ButtonProps {
 }
 
 export function ButtonMarioStyle(props: IMarioButtonProps) {
-  const { bgcolor, label, outlined, ...restProps } = props
+  const { bgcolor, label, outlined, sx, ...restProps } = props
   return (
     <Button
       sx={{
@@ -27,6 +27,7 @@ export function ButtonMarioStyle(props: IMarioButtonProps) {
           backgroundColor: bgcolor,
           transform: "scale(1.1)",
         },
+        ...sx,
       }}
       {...restProps}
     >

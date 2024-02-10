@@ -25,6 +25,7 @@ export enum ApiPaths {
 }
 
 export type TGameStep =
+  | "game-start"
   | "poetry-selection"
   | "poetry-making"
   | "poetry-image-result"
