@@ -1,7 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import Layout from "./components/layout"
 import { usePageRoutes } from "src/pages"
-import Login from "./pages/Login"
+// import Login from "./pages/Login"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import "src/lib/assets/fonts.css"
 import { ThemeProvider } from "@mui/material"
@@ -20,7 +20,7 @@ function App() {
     },
     {
       path: "/login",
-      element: <Login />,
+      element: <div />,
       errorElement: <main>Error</main>,
     },
   ])

@@ -1,4 +1,4 @@
-import { Box, Button, Input } from "@mui/material";
+/* import { Box, Button, Input } from "@mui/material";
 import { useSetAtom } from "jotai";
 import { isLoggedinAtom } from "src/state";
 
@@ -26,4 +26,6 @@ export default function Login() {
         </Box>
       </Box>
     );
-}
+} */
+
+export {}

@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 .env
+
+# dev assets don't need to go
+src/lib/assets/archive
