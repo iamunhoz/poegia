@@ -2,10 +2,10 @@
 import { DndProvider } from "react-dnd"
 import { HTML5Backend } from "react-dnd-html5-backend"
 import { TouchBackend } from "react-dnd-touch-backend"
-import { PoetryBox } from ".."
-import WordBank from "../Wordbank"
 import { isMobile } from "src/lib/environment"
 import { GreenBoard } from "src/components/GreenBoard"
+import PoetryBox from "./components/PoetryBox"
+import WordBank from "./components/Wordbank"
 
 export function PoetryMaker(): JSX.Element {
   return (

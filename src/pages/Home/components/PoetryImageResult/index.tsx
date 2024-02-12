@@ -5,7 +5,7 @@ import { useState } from "react"
 import { openaiImageQuery } from "src/lib/api/openAI"
 import { usePoetryActions } from "src/lib/hooks/usePoetryActions"
 
-export default function ImageFrame(props: BoxProps) {
+export default function PoetryImageResult(props: BoxProps) {
   const { generateDalleQuery } = usePoetryActions()
   const [isLoading, setIsLoading] = useState(false)
   const [dalleImageURL, setDalleImageURL] = useAtom(dalleImageURLAtom)

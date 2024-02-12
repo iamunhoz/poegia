@@ -1,9 +1,9 @@
 import { Box, BoxProps, Typography } from "@mui/material"
-import { WordDropTarget } from "../WordDropTarget"
 import { useAtomValue } from "jotai"
 import { selectedPoetryAtom } from "src/state"
 import { Stanza, Verse } from "src/lib/definitions"
 import { isNumber } from "src/lib/string"
+import { WordDropTarget } from ".."
 
 const VerseRender = ({ verse }: { verse: Verse }) => {
   return (

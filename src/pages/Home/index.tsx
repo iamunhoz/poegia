@@ -1,10 +1,12 @@
 import { Box } from "@mui/material"
-import { ImageFrame } from "./components"
-import { PoetrySelector } from "./components/PoetrySelector"
-import { PoetryMaker } from "./components/PoetryMaker"
 import { useAtomValue } from "jotai"
 import { gameStepAtom } from "src/state"
-import GameStartScreen from "./components/GameStartScreen"
+import {
+  GameStartScreen,
+  PoetryImageResult,
+  PoetryMaker,
+  PoetrySelector,
+} from "./components"
 
 const GameStage = () => {
   const gameStep = useAtomValue(gameStepAtom)
@@ -14,7 +16,7 @@ const GameStage = () => {
     case "poetry-making":
       return <PoetryMaker />
     case "poetry-image-result":
-      return <ImageFrame />
+      return <PoetryImageResult />
     default:
       return <GameStartScreen />
   }

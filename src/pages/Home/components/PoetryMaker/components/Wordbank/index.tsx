@@ -1,5 +1,5 @@
 import { Box, BoxProps } from "@mui/material"
-import { WordDropOrigin } from "../WordDropOrigin"
+import { WordDropOrigin } from ".."
 import { useAtomValue } from "jotai"
 import { selectedPoetryAtom } from "src/state"
 import { getRandomColorClosure } from "src/lib/styles"
