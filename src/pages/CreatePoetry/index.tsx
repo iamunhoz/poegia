@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from "@mui/material"
+import { Box, Button, Paper, TextField } from "@mui/material"
 import { useMutation } from "@tanstack/react-query"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
@@ -30,17 +30,23 @@ const parseStringifiedPoetry = (str: string) => {
 export function CreatePoetry(): JSX.Element {
   const navigate = useNavigate()
   const [poetryRaw, setPoetryRaw] = useState(`
+  Colocar aqui o corpo da poesia
+  Cada linha vira um verso
+  Colocar duas quebras de linha cria uma estrofe
+  Colocar a palavra FILLER nas posições que esperam resposta
+  Poesia de exemplo:
+
   No meio do caminho tinha uma FILLER
   tinha uma FILLER no meio do caminho
   tinha uma FILLER
-  no meio do caminho tinha uma FILLER.
+  no meio do caminho tinha uma FILLER
 
   Nunca me esquecerei desse acontecimento
   na vida de minhas retinas tão fatigadas.
   Nunca me esquecerei que no meio do caminho
   tinha uma FILLER
   tinha uma pedra no meio do caminho
-  no meio do caminho tinha uma FILLER.
+  no meio do caminho tinha uma FILLER
   `)
   const [poetryTitle, setPoetryTitle] = useState("")
   const [poetryFillers, setPoetryFillers] = useState("")
@@ -85,15 +91,18 @@ export function CreatePoetry(): JSX.Element {
 
   return (
     <Box
+      component={Paper}
+      elevation={24}
       sx={{
-        height: "100%",
+        // height: "100%",
         margin: 1,
       }}
+      p={1}
       display="flex"
     >
       <Box display="flex" flexDirection="column" flex={2}>
         <TextField
-          label="Titulo"
+          label="Titulo da Poesia"
           value={poetryTitle}
           onChange={handlePoetryTitleChange}
         />
@@ -101,17 +110,18 @@ export function CreatePoetry(): JSX.Element {
           id="outlined-multiline-flexible"
           // label="Multiline"
           multiline
-          minRows={20}
+          minRows={15}
           sx={{
             "& *": {
-              fontSize: "24px !important",
+              fontSize: "1.6rem",
+              fontFamily: "super-mario-script",
             },
           }}
           value={poetryRaw}
           onChange={handlePoetryChange}
         />
         <TextField
-          label="Fillers"
+          label="Preencha com as possíveis respostas, separando-as por espaço"
           value={poetryFillers}
           onChange={handlePoetryFillersChange}
         />
