@@ -6,6 +6,7 @@ import { isMobile } from "src/lib/environment"
 import { GreenBoard } from "src/components/GreenBoard"
 import PoetryBox from "./components/PoetryBox"
 import WordBank from "./components/Wordbank"
+import { PoetryMakerNavigation } from "./components"
 
 export function PoetryMaker(): JSX.Element {
   return (
@@ -13,6 +14,7 @@ export function PoetryMaker(): JSX.Element {
       <GreenBoard display="flex" flexDirection="column" flex={1} gap={2}>
         <PoetryBox flex={3} />
         <WordBank flex={1} />
+        <PoetryMakerNavigation />
       </GreenBoard>
     </DndProvider>
   )

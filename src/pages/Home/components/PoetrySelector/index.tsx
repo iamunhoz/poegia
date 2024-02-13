@@ -1,11 +1,9 @@
 import { Box, Button, CircularProgress, Typography } from "@mui/material"
 import { useQuery } from "@tanstack/react-query"
-import { useAtomValue } from "jotai"
 import { GreenBoard } from "src/components/GreenBoard"
 import { get } from "src/lib/api/poegia-backend"
 import { Poetry, ApiPaths, AppColors } from "src/lib/definitions"
 import { usePoetryActions } from "src/lib/hooks/usePoetryActions"
-import { selectedPoetryAtom } from "src/state"
 
 const _getRandomColor = () => {
   let idx = 0
@@ -82,7 +80,6 @@ function PoetryCardSelector({ poetry }: { poetry: Poetry }) {
 }
 
 function AsyncPoetryCards() {
-  const selectedPoetry = useAtomValue(selectedPoetryAtom)
   const { data, isLoading, isError } = useQuery({
     queryKey: [ApiPaths.poetries],
     queryFn: async () => {
@@ -90,7 +87,6 @@ function AsyncPoetryCards() {
     },
   })
 
-  if (selectedPoetry) return <></>
   if (isLoading) return <CircularProgress />
   if (isError) return <>errors</>
 

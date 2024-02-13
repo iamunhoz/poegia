@@ -15,9 +15,8 @@ export const openaiImageQuery = async (prompt: string) => {
       size: "1024x1024",
     })
 
-    console.log({ response })
-
-    return response.data[0].url || null
+    if (!response.data[0].url) return null
+    return new URL(response.data[0].url) || null
   } catch (error) {
     console.error({ error })
     return null
