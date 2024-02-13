@@ -5,13 +5,11 @@ import { Box, Typography } from "@mui/material"
 import { UserMenu } from "./UserMenu"
 
 export default function Header(): JSX.Element {
-  // const [theme] = useAtom(themeAtom);
-
   return (
     <Box component="header" display="flex" justifyContent="center">
       <Typography
         variant="h1"
-        fontSize={96}
+        fontSize="7rem"
         sx={{
           color: "white",
           textShadow:
@@ -22,7 +20,7 @@ export default function Header(): JSX.Element {
         Poegia
       </Typography>
 
-      <UserMenu sx={{ position: "absolute", right: 0 }} />
+      {null && <UserMenu sx={{ position: "absolute", right: 0 }} />}
     </Box>
   )
 }

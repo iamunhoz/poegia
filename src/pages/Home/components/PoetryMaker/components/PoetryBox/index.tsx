@@ -5,18 +5,19 @@ import { Stanza, Verse } from "src/lib/definitions"
 import { isNumber } from "src/lib/string"
 import { WordDropTarget } from ".."
 
-const VerseRender = ({ verse }: { verse: Verse }) => {
+const VerseRender = ({ verse, isLast }: { verse: Verse; isLast: boolean }) => {
   return (
     <Typography
       variant="body1"
       textAlign="center"
       sx={{
+        marginBottom: isLast ? "2rem" : undefined,
         "& > span": {
-          fontSize: "32px",
+          fontSize: "2.4rem",
           padding: 1,
           fontFamily: "super-mario-script",
           color: "white",
-          lineHeight: "54px",
+          lineHeight: "2.8rem",
         },
       }}
     >
@@ -33,11 +34,15 @@ const VerseRender = ({ verse }: { verse: Verse }) => {
 
 const StanzaRender = ({ stanza }: { stanza: Stanza }) => {
   return (
-    <Box>
-      {stanza.map((verse) => (
-        <VerseRender verse={verse} key={JSON.stringify(verse)} />
+    <>
+      {stanza.map((verse, idx) => (
+        <VerseRender
+          verse={verse}
+          key={JSON.stringify(verse)}
+          isLast={stanza.length === idx + 1}
+        />
       ))}
-    </Box>
+    </>
   )
 }
 
@@ -48,10 +53,12 @@ export default function PoetryBox(props: BoxProps) {
   return (
     <Box
       {...props}
-      display="flex"
-      flexDirection="column"
       alignItems="center"
       justifyContent="center"
+      sx={{
+        columnCount: 1,
+        columnGap: "1rem",
+      }}
     >
       {selectedPoetry.body.map((stanza, idx) => (
         <StanzaRender stanza={stanza} key={idx} />

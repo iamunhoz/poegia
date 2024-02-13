@@ -4,6 +4,10 @@ import woodenImage from "src/lib/assets/wooden-wall-cropped.png"
 const openai = new OpenAI({
   apiKey: import.meta.env.VITE_OPENAI_API_KEY,
   dangerouslyAllowBrowser: true,
+  fetch: async (url: RequestInfo, init?: RequestInit): Promise<Response> => {
+    const response = await fetch(url, { ...init, mode: "cors" })
+    return response
+  },
 })
 
 export const openaiImageQuery = async (prompt: string) => {
@@ -16,7 +20,7 @@ export const openaiImageQuery = async (prompt: string) => {
     })
 
     if (!response.data[0].url) return null
-    return new URL(response.data[0].url) || null
+    return response.data[0].url || null
   } catch (error) {
     console.error({ error })
     return null

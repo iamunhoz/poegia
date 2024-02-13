@@ -32,7 +32,7 @@ function PoetrySelectorTitle() {
       fontFamily="paper-mario"
       sx={{
         textShadow: "0 5px rgba(0,0,0,0.7), 5px 0 rgba(0,0,0,0.7)",
-        fontSize: "96px",
+        fontSize: "7rem",
       }}
     >
       {"Escolha uma poesia".split("").map((char) => (
@@ -40,11 +40,10 @@ function PoetrySelectorTitle() {
           key={char}
           style={{
             color: getRandomColor(),
-            borderRadius: "10px",
-            display: "inline",
+            display: "inline-block",
             textAlign: "center",
-            height: "90px",
-            marginRight: "5px",
+            lineHeight: 0.9,
+            marginRight: char === " " ? "25px" : "5px",
           }}
         >
           {char}
@@ -67,7 +66,7 @@ function PoetryCardSelector({ poetry }: { poetry: Poetry }) {
         color: "white",
         fontFamily: "super-mario-script",
         border: "4px dashed #dcdcdc",
-        fontSize: "32px",
+        fontSize: "2.4rem",
 
         "&:hover": {
           backgroundColor: "rgba(255,255,255,0.2)",
@@ -93,7 +92,9 @@ function AsyncPoetryCards() {
   return (
     <Box
       display="grid"
-      gridTemplateColumns="repeat(auto-fill, minmax(400px, 1fr))"
+      gridTemplateColumns={`repeat(${
+        (data?.length || 0) / 2 > 3 ? (data?.length || 0) / 2 : 3
+      }, minmax(400px, 1fr))`}
       justifyContent="center"
       alignItems="start"
       mt={6}

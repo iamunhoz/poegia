@@ -12,9 +12,9 @@ export function PoetryMaker(): JSX.Element {
   return (
     <DndProvider backend={isMobile() ? TouchBackend : HTML5Backend}>
       <GreenBoard display="flex" flexDirection="column" flex={1} gap={2}>
-        <PoetryBox flex={3} />
+        <PoetryBox flex={10} />
         <WordBank flex={1} />
-        <PoetryMakerNavigation />
+        <PoetryMakerNavigation flex={1} />
       </GreenBoard>
     </DndProvider>
   )

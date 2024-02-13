@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom"
-import Footer from "./Footer"
+// import Footer from "./Footer"
 import Header from "./Header"
 import { Box } from "@mui/material"
 import woodenWallBg from "src/lib/assets/wooden-wall-cropped.png"
@@ -10,7 +10,7 @@ export default function Layout(): JSX.Element {
       display="flex"
       flexDirection="column"
       sx={{
-        height: "99svh",
+        height: "100svh",
         backgroundImage: `url(${woodenWallBg})`,
         backgroundSize: "cover",
       }}
@@ -20,7 +20,7 @@ export default function Layout(): JSX.Element {
       <Box component="main" flex={1}>
         <Outlet />
       </Box>
-      <Footer />
+      {/* <Footer /> */}
     </Box>
   )
 }

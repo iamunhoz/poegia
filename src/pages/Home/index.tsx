@@ -24,7 +24,7 @@ const GameStage = () => {
 
 export default function Home() {
   return (
-    <Box display="flex" height="100%" gap={2} p={2}>
+    <Box display="flex" height="100%">
       <GameStage />
     </Box>
   )

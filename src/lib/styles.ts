@@ -16,6 +16,7 @@ export const overridedMuiTheme = createTheme({
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
     ].join(","),
+    htmlFontSize: 10,
     button: {
       textTransform: "none",
     },

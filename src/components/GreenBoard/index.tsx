@@ -1,5 +1,6 @@
 import { Box, BoxProps } from "@mui/material"
 import GreenBoardBg from "src/lib/assets/green-board-cropped.png"
+
 export function GreenBoard(props: BoxProps): JSX.Element {
   const { children, sx, ...restProps } = props
   return (
@@ -7,7 +8,7 @@ export function GreenBoard(props: BoxProps): JSX.Element {
       {...restProps}
       sx={{
         ...sx,
-        padding: "70px 120px",
+        padding: "50px 100px",
         backgroundImage: `url(${GreenBoardBg})`,
         backgroundSize: "100% 100%",
       }}

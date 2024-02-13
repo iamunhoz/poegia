@@ -4,7 +4,7 @@ import { usePageRoutes } from "src/pages"
 // import Login from "./pages/Login"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import "src/lib/assets/fonts.css"
-import { ThemeProvider } from "@mui/material"
+import { CssBaseline, ThemeProvider } from "@mui/material"
 import { overridedMuiTheme } from "./lib/styles"
 
 const queryClient = new QueryClient()
@@ -26,6 +26,7 @@ function App() {
   ])
   return (
     <ThemeProvider theme={overridedMuiTheme}>
+      {/* <CssBaseline /> */}
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
       </QueryClientProvider>

@@ -20,7 +20,7 @@ export default function GameStartScreen() {
         <ButtonMarioStyle
           bgcolor={AppColors.green}
           label="Iniciar"
-          sx={{ fontSize: 96, textTransform: "uppercase", pl: 6, pr: 6 }}
+          sx={{ fontSize: "5rem", textTransform: "uppercase", pl: 6, pr: 6 }}
           onClick={() => {
             setGameStep("poetry-selection")
           }}

@@ -42,9 +42,9 @@ export function WordDropTarget({ idx }: { idx: number }): JSX.Element {
       ref={dropRef}
       sx={{
         borderRadius: "4px",
-        minWidth: "160px",
-        minHeight: "40px",
-        maxHeight: "50px",
+        minWidth: "10rem",
+        minHeight: "2.4rem",
+        maxHeight: "2.8rem",
         display: "inline-flex",
         justifyContent: "center",
         alignItems: "center",
@@ -59,8 +59,8 @@ export function WordDropTarget({ idx }: { idx: number }): JSX.Element {
           height: "100%",
           border:
             isHovered && canDrop
-              ? `6px dashed ${AppColors.yellow}`
-              : "4px dashed #dcdcdc",
+              ? `0.4rem dashed ${AppColors.yellow}`
+              : "0.2rem dashed #dcdcdc",
 
           boxSizing: "border-box",
         },

@@ -15,7 +15,7 @@ export function ButtonMarioStyle(props: IMarioButtonProps) {
         backgroundColor: bgcolor,
         fontFamily: "paper-mario",
         color: "white",
-        fontSize: "36px",
+        fontSize: "2rem",
         borderRight: "5px solid rgba(0,0,0,0.7)",
         borderBottom: "5px solid rgba(0,0,0,0.7)",
         boxShadow: "5px 5px 0 0 rgba(0, 0, 0, 0.5)",
